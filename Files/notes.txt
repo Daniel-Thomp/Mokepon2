@@ -1,1 +1,25 @@
 ID for each stage starts with the first town with 3 then counts up for each load zone
+the format for each monster's file is: 
+
+Name
+HP
+Attack
+SpecATK
+Defense
+SpecDEF
+Speed
+
+Type:
+TYPE1
+TYPE2
+
+Moves:
+LVLX:
+MOVE NAME
+
+
+Monster ideas:
+    Starters:
+        water type - Typhoonix (Water/Flying Type): A phoenix-like bird that embodies the power of a hurricane. Its wings create powerful winds and torrential rain wherever it flies.
+        fire type - Frostlion (Ice/Fire Type): A lion Pokémon with a mane made of burning ice, representing the fusion of fire and ice. Its body temperature can switch between freezing cold and scorching hot in battle.
+        grass type - Arboragon (Grass/Dragon Type): A large, ancient tree dragon Pokémon that guards forests. Its wings are made of leaves, and its breath has the power to restore plant life.
