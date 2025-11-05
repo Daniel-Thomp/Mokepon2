@@ -1,17 +1,16 @@
 import java.util.*;
 import javax.swing.Timer;
 
-
 public class Mokepon {
     String name = "--";
 
-    int maxHP; 
+    int maxHP;
     int attack;
     int specialAttack;
     int defence;
     int specialDefence;
     int speed;
-    
+
     int currentHP = 0;
     int level;
     int xp;
@@ -21,7 +20,7 @@ public class Mokepon {
     int defenceBoost = 0;
     int specialDefenceBoost = 0;
     int speedBoost = 0;
-    
+
     String Move1;
     String Move2;
     String Move3;
@@ -35,10 +34,11 @@ public class Mokepon {
     String status = "";
     boolean flinched = false;
     int tailwind = 0;
-    public Mokepon() {      
+
+    public Mokepon() {
     }
 
-    public void assign(String name,int level){
+    public void assign(String name, int level) {
         this.level = level;
         this.name = name;
         calcStats();
@@ -47,10 +47,12 @@ public class Mokepon {
         status = "";
         flinched = false;
     }
-    public void calcStats(){
+
+    public void calcStats() {
         Scanner fileScanner = Main.fileReader("files//Stats.txt");
-        
-        while (fileScanner.nextLine().contains(name) != true) {}
+
+        while (fileScanner.nextLine().contains(name) != true) {
+        }
 
         int BaseHP = fileScanner.nextInt();
         int BaseATK = fileScanner.nextInt();
@@ -59,19 +61,21 @@ public class Mokepon {
         int BaseSpecDEF = fileScanner.nextInt();
         int BaseSpeed = fileScanner.nextInt();
 
-        maxHP = (int)((2*BaseHP*level)/100+level+10);
-        
-        attack = (int)((2*BaseATK*level)/100+5);
-        specialAttack = (int)((2*BaseSpecATK*level)/100+5);
-        defence = (int)((2*BaseDEF*level)/100+5);
-        specialDefence = (int)((2*BaseSpecDEF*level)/100+5);
-        speed = (int)((2*BaseSpeed*level)/100+5);
+        maxHP = (int) ((2 * BaseHP * level) / 100 + level + 10);
 
-        while (fileScanner.nextLine().contains("Type:") != true) {}
+        attack = (int) ((2 * BaseATK * level) / 100 + 5);
+        specialAttack = (int) ((2 * BaseSpecATK * level) / 100 + 5);
+        defence = (int) ((2 * BaseDEF * level) / 100 + 5);
+        specialDefence = (int) ((2 * BaseSpecDEF * level) / 100 + 5);
+        speed = (int) ((2 * BaseSpeed * level) / 100 + 5);
+
+        while (fileScanner.nextLine().contains("Type:") != true) {
+        }
         type1 = fileScanner.nextInt();
         try {
             type2 = fileScanner.nextInt();
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
         String currentLine = fileScanner.nextLine();
         boolean found = false;
@@ -83,28 +87,31 @@ public class Mokepon {
                 found = true;
                 EvolutionLevel = 100;
             } else {
-                currentLine = fileScanner.nextLine();    
+                currentLine = fileScanner.nextLine();
             }
         }
-        
+
         fileScanner.close();
     }
-    public void getMoves(){
+
+    public void getMoves() {
         Scanner fileScanner = Main.fileReader("files//Stats.txt");
-        while (fileScanner.nextLine().contains(name) != true) {}
-        
+        while (fileScanner.nextLine().contains(name) != true) {
+        }
+
         int counter = -1;
         int moveCounter = 0;
         int lastLocation = 0;
-        while (fileScanner.nextLine().contains("Moves:") != true) {}
-        
+        while (fileScanner.nextLine().contains("Moves:") != true) {
+        }
+
         String currentLine = fileScanner.nextLine();
         boolean found = false;
         boolean finished = false;
 
         while (found == false && finished == false) {
             if (currentLine.contains("LVL")) {
-                String lvlRemoved = currentLine.replaceAll("L|V|:","");
+                String lvlRemoved = currentLine.replaceAll("L|V|:", "");
                 if (Integer.parseInt(lvlRemoved.strip()) <= level) {
                     lastLocation = counter;
                     currentLine = fileScanner.nextLine();
@@ -116,18 +123,18 @@ public class Mokepon {
                 finished = true;
             } else {
                 currentLine = fileScanner.nextLine();
-                counter ++;
-                moveCounter ++;
+                counter++;
+                moveCounter++;
             }
         }
-        
-        
-        
+
         Scanner fileScanner2 = Main.fileReader("files//Stats.txt");
-        while (fileScanner2.next().contains(name) != true) {}
-        while (fileScanner2.nextLine().contains("Moves:") != true) {}
+        while (fileScanner2.next().contains(name) != true) {
+        }
+        while (fileScanner2.nextLine().contains("Moves:") != true) {
+        }
         if (finished) {
-            for (int i = 0; i < lastLocation-4; i++) {
+            for (int i = 0; i < lastLocation - 4; i++) {
                 fileScanner2.nextLine();
             }
             Move1 = fileScanner2.nextLine();
@@ -138,7 +145,7 @@ public class Mokepon {
             fileScanner2.nextLine();
             Move4 = fileScanner2.nextLine();
         } else {
-            if (moveCounter < 4) {               
+            if (moveCounter < 4) {
                 fileScanner2.nextLine();
                 Move1 = fileScanner2.nextLine();
                 Move2 = fileScanner2.nextLine();
@@ -155,8 +162,8 @@ public class Mokepon {
                 fileScanner2.nextLine();
                 Move4 = fileScanner2.nextLine();
             } else {
-                
-                for (int i = 0; i < counter-6; i++) {
+
+                for (int i = 0; i < counter - 6; i++) {
                     fileScanner2.nextLine();
                 }
                 Move1 = fileScanner2.nextLine();
@@ -176,18 +183,20 @@ public class Mokepon {
         if (Move4 == null) {
             Move4 = "--";
         }
-           
+
     }
 
-    public void levelup(){
+    public void levelup() {
         level++;
         screen.playerLevel.setText("L:" + level);
         Main.animator.text(name + " reached level " + level + "!");
         Scanner fileScanner = Main.fileReader("files//stats.txt");
         boolean searching = true;
         boolean found = false;
-        while (fileScanner.nextLine().contains(name) != true) {}
-        while (fileScanner.nextLine().contains("Moves:") != true) {}
+        while (fileScanner.nextLine().contains(name) != true) {
+        }
+        while (fileScanner.nextLine().contains("Moves:") != true) {
+        }
         while (searching && found == false) {
             String line = fileScanner.nextLine();
             if (line.contains("LVL" + level + ":")) {
@@ -196,9 +205,9 @@ public class Mokepon {
                 searching = false;
             }
         }
-        
+
         if (found) {
-            
+
             Timer timer = new Timer(2000, event -> {
                 move2learn = fileScanner.nextLine();
                 if (Move3 == "--") {
@@ -212,7 +221,7 @@ public class Mokepon {
                     timer2.start();
 
                 } else if (Move4 == "--") {
-                    Move4 = move2learn;   
+                    Move4 = move2learn;
                     Main.animator.text(name + " learned " + move2learn);
                     Timer timer2 = new Timer(2000, event2 -> {
                         battle.endBattle();
@@ -220,15 +229,16 @@ public class Mokepon {
                     timer2.setRepeats(false);
                     timer2.start();
                 } else {
-                    String message = name + " wants to learn " + move2learn.toUpperCase() + "\nwhich move should be replaced?";
+                    String message = name + " wants to learn " + move2learn.toUpperCase()
+                            + "\nwhich move should be replaced?";
                     Main.animator.text(message);
-                    
+
                     Timer timer2 = new Timer(3000, event2 -> {
                         screen.text.setText("");
                         learnMove();
                     });
                     timer2.setRepeats(false);
-                    timer2.start();  
+                    timer2.start();
                 }
 
                 fileScanner.close();
@@ -236,7 +246,7 @@ public class Mokepon {
             });
             timer.setRepeats(false);
             timer.start();
-            
+
         } else {
             Timer timer = new Timer(2000, event -> {
                 battle.endBattle();
@@ -249,7 +259,7 @@ public class Mokepon {
 
     }
 
-    public void learnMove(){
+    public void learnMove() {
         battle.event = "LearnMove";
         battle.cursor = 1;
         battle.cursorLabel.setVisible(true);
@@ -269,24 +279,25 @@ public class Mokepon {
         battle.moveType.setVisible(true);
         battle.movePower.setVisible(true);
         battle.moveAccuracy.setVisible(true);
-        battle.moveCatagory.setVisible(true);    
+        battle.moveCatagory.setVisible(true);
 
-        battle.cursorLabel.setBounds(155,396,100, 100);
+        battle.cursorLabel.setBounds(155, 396, 100, 100);
         move.useMove(Move1, "name");
-     
+
     }
-    public void replaceMove(int choice){
+
+    public void replaceMove(int choice) {
         battle.moveBeingUsed();
         if (choice == 1) {
             Main.animator.text(name + " forgot " + Move1);
             Move1 = move2learn;
-        }   else if (choice == 2) {
+        } else if (choice == 2) {
             Main.animator.text(name + " forgot " + Move2);
             Move2 = move2learn;
         } else if (choice == 3) {
             Main.animator.text(name + " forgot " + Move3);
             Move3 = move2learn;
-        } else if (choice == 4){
+        } else if (choice == 4) {
             Main.animator.text(name + " forgot " + Move4);
             Move4 = move2learn;
         } else {
@@ -306,16 +317,18 @@ public class Mokepon {
         });
         timer.setRepeats(false);
         timer.start();
-        
+
     }
-    public void gainXp(double opponentLevel){
-        double amount = ((200*opponentLevel)/5)*Math.pow((2*opponentLevel+10)/(opponentLevel+(double)level+10), 2.5)+1;
-        xp = xp + (int)amount;
-        Main.animator.text(name + " gained " + (int)amount + "xp points");
+
+    public void gainXp(double opponentLevel) {
+        double amount = ((200 * opponentLevel) / 5)
+                * Math.pow((2 * opponentLevel + 10) / (opponentLevel + (double) level + 10), 2.5) + 1;
+        xp = xp + (int) amount;
+        Main.animator.text(name + " gained " + (int) amount + "xp points");
 
         Timer timer = new Timer(2000, event -> {
-            if (xp > (int)(Math.pow(level, 3)-Math.pow(level-1.0, 3))) {
-                xp = xp-(int)(Math.pow(level, 3)-Math.pow(level-1.0, 3));
+            if (xp > (int) (Math.pow(level, 3) - Math.pow(level - 1.0, 3))) {
+                xp = xp - (int) (Math.pow(level, 3) - Math.pow(level - 1.0, 3));
                 levelup();
             } else {
                 battle.endBattle();
@@ -324,35 +337,34 @@ public class Mokepon {
         timer.setRepeats(false);
         timer.start();
     }
-    public boolean evolve(){
+
+    public boolean evolve() {
         boolean evolving = false;
         if (level >= EvolutionLevel) {
             evolving = true;
             String New;
-            Scanner fileScanner = Main.fileReader("files//Stats.txt");     
-            while (fileScanner.nextLine().contains(name) != true) {}
-            while (fileScanner.nextLine().contains("Evolution:") != true) {}
-            fileScanner.nextLine();fileScanner.nextLine();
+            Scanner fileScanner = Main.fileReader("files//Stats.txt");
+            while (fileScanner.nextLine().contains(name) != true) {
+            }
+            while (fileScanner.nextLine().contains("Evolution:") != true) {
+            }
+            fileScanner.nextLine();
+            fileScanner.nextLine();
             New = fileScanner.nextLine();
             animations.evolve(name, New);
             name = New;
             assign(name, level);
-            
+
         }
         return evolving;
     }
-    public void resetBoosts(){
+
+    public void resetBoosts() {
         attackBoost = 0;
         specialAttackBoost = 0;
         defenceBoost = 0;
         specialDefenceBoost = 0;
         speedBoost = 0;
     }
-    
-    
-    
-    
-    
-    
-    
+
 }

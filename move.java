@@ -1,3 +1,4 @@
+import java.lang.reflect.Method;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.ImageIcon;
@@ -24,7 +25,8 @@ public class move {
     static int effectStrength2 = 0;
     static int delay;
     static boolean playerFirst;
-    public static void useMove(String move,String user){
+
+    public static void useMove(String move, String user) {
         type = -1;
         power = 0;
         accuracy = 0;
@@ -36,311 +38,45 @@ public class move {
         delay = 2000;
         category = "Status";
 
-        if (move.contains("Gust")) {
-            power = 40;
-            accuracy = 100;
-            category = "Special";
-            type = 9;
-        } else if (move.contains("Water Gun")) {
-            power = 40;
-            accuracy = 100;
-            category = "Special";
-            type = 2;
-        } else if (move.contains("Whirlwind")) {
-            //end battle
-            type = 9;
-        } else if (move.contains("Rain Dance")) {
-            effect = "Rain";
-            effectStrength = 5;
-            type = 2;
-        } else if (move.contains("Air Cutter")) {
-            power = 60;
-            accuracy = 95;
-            category = "Special";
-            type = 9;
-        } else if (move.contains("Aqua Ring")) {
-            //heals each turn
-            type = 2;
-        } else if (move.contains("Hurricane")) {
-            power = 110;
-            accuracy = 70;
-            category = "Special";
-            type = 9;
-            effect = "Confuse";
-            effectStrength = 30;
-        } else if (move.contains("Surf")) {
-            power = 90;
-            accuracy = 100;
-            category = "Special";
-            type = 2;
-        } else if (move.contains("Tailwind")) {
-            effect = "Tailwind";
-            type = 9;
-        } else if (move.contains("Hydro Pump")) {
-            power = 110;
-            accuracy = 80;
-            category = "Special";
-            type = 2;
-        } else if (move.contains("Roost")) {
-            //heal
-            type = 9;
-        } else if (move.contains("Twister")) {
-            power = 40;
-            accuracy = 100;
-            category = "Special";
-            type = 14;
-        } else if (move.contains("Storm Surge")) {
-            //chatgpt
-        } else if (move.contains("Thunder")) {
-            power = 110;
-            accuracy = 70;
-            category = "Special";
-            type = 4;
-            effect = "Para";
-            effectStrength = 30;
-        } else if (move.contains("Tempest Fury")) {
-            //chatgpt
-        }else if (move.contains("Ice Fang")) {
-            power = 65;
-            accuracy = 95;
-            category = "Physical";
-            type = 5;
-            effect = "Freeze";
-            effectStrength = 10;
-            effect2 = "Flinch";
-            effectStrength2 = 10;
-        } else if (move.contains("Ember")) {
-            power = 40;
-            accuracy = 100;
-            category = "Special";
-            type = 1;
-            effect = "Burn";
-            effectStrength = 10;
-        } else if (move.contains("Roar")) {
-            //end battle
-            type = 0;
-        } else if (move.contains("Flame Charge")) {
-            power = 50;
-            accuracy = 100;
-            category = "Physical";
-            type = 1;
-            effect = "+SPE";
-        } else if (move.contains("Bite")) {
-            power = 60;
-            accuracy = 100;
-            category = "Physical";
-            type = 15;
-            effect = "Flinch";
-            effectStrength = 30;
-        } else if (move.contains("Icicle Crash")) {
-            power = 85;
-            accuracy = 90;
-            category = "Physical";
-            type = 5;
-            effect = "Flinch";
-            effectStrength = 30;
-        } else if (move.contains("Fire Fang")) {
-            power = 65;
-            accuracy = 95;
-            category = "Physical";
-            type = 1;
-            effect = "Burn";
-            effectStrength = 10;
-            effect2 = "Flinch";
-            effectStrength2 = 10;
-        } else if (move.contains("Avalanche")) {
-            power = 60;
-            accuracy = 100;
-            category = "Physical";
-            type = 5;
-            //double dmg if hit first
-        } else if (move.contains("Crunch")) {
-            power = 80;
-            accuracy = 100;
-            category = "Physical";
-            type = 15;
-            effect = "O-DEF";
-            effectStrength = 20;
-        } else if (move.contains("Flare Blitz")) {
-            power = 120;
-            accuracy = 100;
-            category = "Physical";
-            type = 1;
-            effect = "Burn";
-            effectStrength = 10;
-            effect2 = "Recoil";
-            effectStrength2 = 3;
-        } else if (move.contains("Blizzard")) {
-            power = 110;
-            accuracy = 70;
-            category = "Special";
-            type = 5;
-            effect = "Freeze";
-            effectStrength = 10;
-        } else if (move.contains("Fire Blast")) {
-            power = 110;
-            accuracy = 85;
-            category = "Special";
-            type = 1;
-            effect = "Burn";
-            effectStrength = 10;
-        } else if (move.contains("Frostburn")) {
-            //chatgpt
-        } else if (move.contains("Earthquake")) {
-            power = 100;
-            accuracy = 100;
-            category = "Physical";
-            type = 8;
-        } else if (move.contains("Glacial Roar")) {
-            //chatgpt
-        }else if (move.contains("Dragon Breath")) {
-            power = 60;
-            accuracy = 100;
-            category = "Special";
-            type = 14;
-            effect = "Para";
-            effectStrength = 10;
-        } else if (move.contains("Leafage")) {
-            power = 40;
-            accuracy = 100;
-            category = "Physical";
-            type = 3;
-        } else if (move.contains("Growth")) {
-            effect = "+ATK";
-            effect2 = "+SPA";
-        } else if (move.contains("Vine Whip")) {
-            power = 45;
-            accuracy = 100;
-            category = "Physical";
-            type = 3;
-        } else if (move.contains("Dragon Tail")) {
-            power = 60;
-            accuracy = 90;
-            category = "Physical";
-            type = 14;
-            //end battle
-        } else if (move.contains("Razor Leaf")) {
-            power = 55;
-            accuracy = 95;
-            category = "Physical";
-            type = 3;
-        } else if (move.contains("Leech Seed")) {
-            //drain health each turn
-            type = 3;
-        } else if (move.contains("Dragon Claw")) {
-            power = 80;
-            accuracy = 100;
-            category = "Physical";
-            type = 14;
-        } else if (move.contains("Synthesis")) {
-            //heal
-            type = 3;
-        } else if (move.contains("Seed Bomb")) {
-            power = 80;
-            accuracy = 100;
-            category = "Physical";
-            type = 3;
-        } else if (move.contains("Dragon Pulse")) {
-            power = 85;
-            accuracy = 100;
-            category = "Special";
-            type = 14;
-        } else if (move.contains("Solar Beam")) {
-            power = 120;
-            accuracy = 100;
-            category = "Special";
-            type = 3;
-            //2 turn
-        } else if (move.contains("Wood Hammer")) {
-            power = 120;
-            accuracy = 100;
-            category = "Physical";
-            type = 3;
-            effect = "Recoil";
-            effectStrength = 3;
-        } else if (move.contains("Nature's Wrath")) {
-            //chatgpt
-        } else if (move.contains("Leer")) {
-            accuracy = 100;
-            type = 0; 
-            effect = "O-DEF";
-        } else if (move.contains("Smog")) {
-            power = 30;
-            accuracy = 70;
-            type = 7; 
-            category = "Special";
-            effect = "Poison";
-            effectStrength = 40;
-        } else if (move.contains("Wing Attack")) {
-            power = 60;
-            accuracy = 100;
-            type = 9; 
-            category = "Physical";
-        } else if (move.contains("Fire Spin")) {
-            power = 35;
-            accuracy = 85;
-            type = 1; 
-            category = "Special";
-            effect = "fire spin";
-        } else if (move.contains("Night Slash")) {
-            power = 70;
-            accuracy = 100;
-            type = 15; 
-            category = "Physical";
-        } else if (move.contains("Dark Pulse")) {
-            power = 80;
-            accuracy = 100;
-            type = 15; 
-            category = "Special";
-            effect = "Flinch";
-            effectStrength = 20;
-        } else if (move.contains("Inferno")) {
-            power = 100;
-            accuracy = 50;
-            type = 1; 
-            category = "Special";
-            effect = "Burn";
-        } else if (move.contains("Iron Tail")) {
-            power = 100;
-            accuracy = 75;
-            type = 16; 
-            category = "Physical";
-            effect = "O-DEF";
-            effectStrength = 30;
-        } else if (move.contains("Overheat")) {
-            power = 130;
-            accuracy = 90;  
-            type = 1; 
-            category = "Special";
-            effect = "--SPA";
-        } else if (move.contains("Will-O-Wisp")) {
-            accuracy = 85;
-            type = 1;
-            effect = "Burn";
+        String movefn = move.strip();
+        movefn = movefn.replace(" ", "_");
+        movefn = movefn.replaceAll("[-+']", "");
+
+        try {
+            Class<?> clazz = move.class;
+            Method method1 = clazz.getDeclaredMethod(movefn);
+            method1.invoke(null);
+        } catch (Exception e) {
+            System.out.println(e);
         }
-        
-        
+
         if (effectStrength2 == 0) {
             delay = 0;
         }
-
 
         if (user == "Opponent") {
             if (move.contains("--")) {
                 opponentTurn();
             } else {
                 battle.moveBeingUsed();
-                battle.calcDamage(power, type, user, category, effect, effectStrength, effect2, effectStrength2,move,accuracy);
+                battle.calcDamage(power, type, user, category, effect, effectStrength, effect2, effectStrength2, move,
+                        accuracy);
             }
-            
+
         } else if (user == "Player") {
-            
-            if (Main.Player.inBattle.speed*battle.statBoosts(Main.Player.inBattle, "speed") > Main.Opponent.inBattle.speed*battle.statBoosts(Main.Opponent.inBattle, "speed") || (Main.Player.inBattle.speed*battle.statBoosts(Main.Player.inBattle, "speed") == Main.Opponent.inBattle.speed*battle.statBoosts(Main.Opponent.inBattle, "speed") && ThreadLocalRandom.current().nextInt(1, 3) == 1)) {
+
+            if (Main.Player.inBattle.speed * battle.statBoosts(Main.Player.inBattle,
+                    "speed") > Main.Opponent.inBattle.speed * battle.statBoosts(Main.Opponent.inBattle, "speed")
+                    || (Main.Player.inBattle.speed
+                            * battle.statBoosts(Main.Player.inBattle, "speed") == Main.Opponent.inBattle.speed
+                                    * battle.statBoosts(Main.Opponent.inBattle, "speed")
+                            && ThreadLocalRandom.current().nextInt(1, 3) == 1)) {
                 playerMoving = true;
                 playerFirst = true;
                 battle.moveBeingUsed();
-                battle.calcDamage(power, type, user, category, effect, effectStrength, effect2, effectStrength2,move,accuracy);
-            
+                battle.calcDamage(power, type, user, category, effect, effectStrength, effect2, effectStrength2, move,
+                        accuracy);
+
             } else {
                 playerFirst = false;
                 opponentMoving = true;
@@ -372,7 +108,7 @@ public class move {
             } else {
                 inputs.exists = true;
             }
-            ImageIcon cat = new ImageIcon("battle images//" + category +".png");
+            ImageIcon cat = new ImageIcon("battle images//" + category + ".png");
             battle.moveCatagory.setIcon(cat);
             switch (type) {
                 case 0:
@@ -415,10 +151,10 @@ public class move {
                     battle.moveType.setText("Type: Rock");
                     break;
                 case 13:
-                    battle.moveType.setText("Type: Ghost");    
+                    battle.moveType.setText("Type: Ghost");
                     break;
                 case 14:
-                    battle.moveType.setText("Type: Dragon");  
+                    battle.moveType.setText("Type: Dragon");
                     break;
                 case 15:
                     battle.moveType.setText("Type: Dark");
@@ -432,23 +168,24 @@ public class move {
                 case -1:
                     battle.moveType.setText("Type: --");
                     break;
-                
+
             }
 
         }
-    }    
-    
-    public static void userTurn(){
+    }
+
+    public static void userTurn() {
         opponentMoving = false;
         if (UeffectStrength2 == 0) {
             delay = 0;
         }
         battle.moveBeingUsed();
-        battle.calcDamage(Upower, Utype, "Player", Ucategory, Ueffect, UeffectStrength, Ueffect2, UeffectStrength2, Umove, Uaccuracy);
+        battle.calcDamage(Upower, Utype, "Player", Ucategory, Ueffect, UeffectStrength, Ueffect2, UeffectStrength2,
+                Umove, Uaccuracy);
     }
 
-    public static void opponentTurn(){
-        
+    public static void opponentTurn() {
+
         playerMoving = false;
         int choice = ThreadLocalRandom.current().nextInt(1, 5);
         if (choice == 1) {
@@ -461,6 +198,394 @@ public class move {
             useMove(Main.Opponent.inBattle.Move4, "Opponent");
         }
     }
-        
-    
+
+    public static void Gust() {
+        power = 40;
+        accuracy = 100;
+        category = "Special";
+        type = 9;
+    }
+
+    public static void Water_Gun() {
+        power = 40;
+        accuracy = 100;
+        category = "Special";
+        type = 2;
+    }
+
+    public static void Whirlwind() {
+        // end battle
+        type = 9;
+    }
+
+    public static void Rain_Dance() {
+        effect = "Rain";
+        effectStrength = 5;
+        type = 2;
+    }
+
+    public static void Air_Cutter() {
+        power = 60;
+        accuracy = 95;
+        category = "Special";
+        type = 9;
+    }
+
+    public static void Aqua_Ring() {
+        // heals each turn
+        type = 2;
+    }
+
+    public static void Hurricane() {
+        power = 110;
+        accuracy = 70;
+        category = "Special";
+        type = 9;
+        effect = "Confuse";
+        effectStrength = 30;
+    }
+
+    public static void Surf() {
+        power = 90;
+        accuracy = 100;
+        category = "Special";
+        type = 2;
+    }
+
+    public static void Tailwind() {
+        effect = "Tailwind";
+        type = 9;
+    }
+
+    public static void Hydro_Pump() {
+        power = 110;
+        accuracy = 80;
+        category = "Special";
+        type = 2;
+    }
+
+    public static void Roost() {
+        // heal
+        type = 9;
+    }
+
+    public static void Twister() {
+        power = 40;
+        accuracy = 100;
+        category = "Special";
+        type = 14;
+    }
+
+    public static void Storm_Surge() {
+        // chatgpt
+    }
+
+    public static void Thunder() {
+        power = 110;
+        accuracy = 70;
+        category = "Special";
+        type = 4;
+        effect = "Para";
+        effectStrength = 30;
+    }
+
+    public static void Tempest_Fury() {
+        // chatgpt
+    }
+
+    public static void Ice_Fang() {
+        power = 65;
+        accuracy = 95;
+        category = "Physical";
+        type = 5;
+        effect = "Freeze";
+        effectStrength = 10;
+        effect2 = "Flinch";
+        effectStrength2 = 10;
+    }
+
+    public static void Ember() {
+        power = 40;
+        accuracy = 100;
+        category = "Special";
+        type = 1;
+        effect = "Burn";
+        effectStrength = 10;
+    }
+
+    public static void Roar() {
+        // end battle
+        type = 0;
+    }
+
+    public static void Flame_Charge() {
+        power = 50;
+        accuracy = 100;
+        category = "Physical";
+        type = 1;
+        effect = "+SPE";
+    }
+
+    public static void Bite() {
+        power = 60;
+        accuracy = 100;
+        category = "Physical";
+        type = 15;
+        effect = "Flinch";
+        effectStrength = 30;
+    }
+
+    public static void Icicle_Crash() {
+        power = 85;
+        accuracy = 90;
+        category = "Physical";
+        type = 5;
+        effect = "Flinch";
+        effectStrength = 30;
+    }
+
+    public static void Fire_Fang() {
+        power = 65;
+        accuracy = 95;
+        category = "Physical";
+        type = 1;
+        effect = "Burn";
+        effectStrength = 10;
+        effect2 = "Flinch";
+        effectStrength2 = 10;
+    }
+
+    public static void Avalanche() {
+        power = 60;
+        accuracy = 100;
+        category = "Physical";
+        type = 5;
+        // double dmg if hit first
+    }
+
+    public static void Crunch() {
+        power = 80;
+        accuracy = 100;
+        category = "Physical";
+        type = 15;
+        effect = "O-DEF";
+        effectStrength = 20;
+    }
+
+    public static void Flare_Blitz() {
+        power = 120;
+        accuracy = 100;
+        category = "Physical";
+        type = 1;
+        effect = "Burn";
+        effectStrength = 10;
+        effect2 = "Recoil";
+        effectStrength2 = 3;
+    }
+
+    public static void Blizzard() {
+        power = 110;
+        accuracy = 70;
+        category = "Special";
+        type = 5;
+        effect = "Freeze";
+        effectStrength = 10;
+    }
+
+    public static void Fire_Blast() {
+        power = 110;
+        accuracy = 85;
+        category = "Special";
+        type = 1;
+        effect = "Burn";
+        effectStrength = 10;
+    }
+
+    public static void Frostburn() {
+        // chatgpt
+    }
+
+    public static void Earthquake() {
+        power = 100;
+        accuracy = 100;
+        category = "Physical";
+        type = 8;
+    }
+
+    public static void Glacial_Roar() {
+        // chatgpt
+    }
+
+    public static void Dragon_Breath() {
+        power = 60;
+        accuracy = 100;
+        category = "Special";
+        type = 14;
+        effect = "Para";
+        effectStrength = 10;
+    }
+
+    public static void Leafage() {
+        power = 40;
+        accuracy = 100;
+        category = "Physical";
+        type = 3;
+    }
+
+    public static void Growth() {
+        effect = "+ATK";
+        effect2 = "+SPA";
+    }
+
+    public static void Vine_Whip() {
+        power = 45;
+        accuracy = 100;
+        category = "Physical";
+        type = 3;
+    }
+
+    public static void Dragon_Tail() {
+        power = 60;
+        accuracy = 90;
+        category = "Physical";
+        type = 14;
+        // end battle
+    }
+
+    public static void Razor_Leaf() {
+        power = 55;
+        accuracy = 95;
+        category = "Physical";
+        type = 3;
+    }
+
+    public static void Leech_Seed() {
+        // drain health each turn
+        type = 3;
+    }
+
+    public static void Dragon_Claw() {
+        power = 80;
+        accuracy = 100;
+        category = "Physical";
+        type = 14;
+    }
+
+    public static void Synthesis() {
+        // heal
+        type = 3;
+    }
+
+    public static void Seed_Bomb() {
+        power = 80;
+        accuracy = 100;
+        category = "Physical";
+        type = 3;
+    }
+
+    public static void Dragon_Pulse() {
+        power = 85;
+        accuracy = 100;
+        category = "Special";
+        type = 14;
+    }
+
+    public static void Solar_Beam() {
+        power = 120;
+        accuracy = 100;
+        category = "Special";
+        type = 3;
+        // 2 turn
+    }
+
+    public static void Wood_Hammer() {
+        power = 120;
+        accuracy = 100;
+        category = "Physical";
+        type = 3;
+        effect = "Recoil";
+        effectStrength = 3;
+    }
+
+    public static void Natures_Wrath() {
+        // chatgpt
+    }
+
+    public static void Leer() {
+        accuracy = 100;
+        type = 0;
+        effect = "O-DEF";
+    }
+
+    public static void Smog() {
+        power = 30;
+        accuracy = 70;
+        type = 7;
+        category = "Special";
+        effect = "Poison";
+        effectStrength = 40;
+    }
+
+    public static void Wing_Attack() {
+        power = 60;
+        accuracy = 100;
+        type = 9;
+        category = "Physical";
+    }
+
+    public static void Fire_Spin() {
+        power = 35;
+        accuracy = 85;
+        type = 1;
+        category = "Special";
+        effect = "fire spin";
+    }
+
+    public static void Night_Slash() {
+        power = 70;
+        accuracy = 100;
+        type = 15;
+        category = "Physical";
+    }
+
+    public static void Dark_Pulse() {
+        power = 80;
+        accuracy = 100;
+        type = 15;
+        category = "Special";
+        effect = "Flinch";
+        effectStrength = 20;
+    }
+
+    public static void Inferno() {
+        power = 100;
+        accuracy = 50;
+        type = 1;
+        category = "Special";
+        effect = "Burn";
+    }
+
+    public static void Iron_Tail() {
+        power = 100;
+        accuracy = 75;
+        type = 16;
+        category = "Physical";
+        effect = "O-DEF";
+        effectStrength = 30;
+    }
+
+    public static void Overheat() {
+        power = 130;
+        accuracy = 90;
+        type = 1;
+        category = "Special";
+        effect = "--SPA";
+    }
+
+    public static void WillOWisp() {
+        accuracy = 85;
+        type = 1;
+        effect = "Burn";
+    }
+
 }

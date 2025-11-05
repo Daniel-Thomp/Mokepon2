@@ -25,29 +25,22 @@ public class screen extends JFrame {
     static JLabel weather = new JLabel();
     static JLabel star = new JLabel();
 
-    
-
     Dimension playerSize = player.getPreferredSize();
 
-    Image icon = Toolkit.getDefaultToolkit().getImage("Overworld Images//icon.png");  
+    Image icon = Toolkit.getDefaultToolkit().getImage("Overworld Images//icon.png");
 
-    public void paintComponent (Graphics g) {
+    public void paintComponent(Graphics g) {
     }
 
     int screenWidth = 654;
     int screenHeight = 613;
     static int tile = 64;
 
-    
-    static int[][] leveldata = level.newLevel(0);
+    static int[][] leveldata = level.newLevel("start");
 
-    
-    
-    
-    
-    public screen(){
+    public screen() {
         frame.add(animation);
-        animation.setBounds(0,0,640,576);
+        animation.setBounds(0, 0, 640, 576);
 
         try {
             customFont = Font.createFont(Font.TRUETYPE_FONT, new File("files//font.ttf")).deriveFont(30f);
@@ -91,18 +84,18 @@ public class screen extends JFrame {
         text.setFont(customFont);
         text.setWrapStyleWord(true);
         text.setLineWrap(true);
-        text.setEditable(false);      // Disable editing
-        text.setOpaque(false);        // Make the background transparent
-        text.setFocusable(false);     // Disable focusability
+        text.setEditable(false); // Disable editing
+        text.setOpaque(false); // Make the background transparent
+        text.setFocusable(false); // Disable focusability
         text.setBackground(new Color(0, 0, 0, 0)); // Transparent background
         text.setBorder(null);
         frame.setLayout(null);
-        
+
         frame.getContentPane().setBackground(Color.BLACK);
 
         frame.setIconImage(icon);
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.add(switchOut.one);
         frame.add(switchOut.two);
@@ -117,40 +110,40 @@ public class screen extends JFrame {
             bag.itemList[i] = new JLabel();
             bag.itemList[i].setFont(screen.customFont);
             screen.frame.add(bag.itemList[i]);
-            bag.itemList[i].setBounds(250,20 + 60*i,500,100);
+            bag.itemList[i].setBounds(250, 20 + 60 * i, 500, 100);
 
             bag.quantityList[i] = new JLabel();
             bag.quantityList[i].setFont(screen.customFont);
             screen.frame.add(bag.quantityList[i]);
-            bag.quantityList[i].setBounds(500,50 + 60*i,500,100);
+            bag.quantityList[i].setBounds(500, 50 + 60 * i, 500, 100);
         }
-       
+
+        screen.frame.add(menu.dex);
+        screen.frame.add(menu.mons);
+        screen.frame.add(menu.bag);
+        screen.frame.add(menu.player);
+        screen.frame.add(menu.save);
+        screen.frame.add(menu.options);
+        screen.frame.add(battle.cursorLabel);
+        screen.frame.add(menu.menuBox);
+        screen.frame.add(screen.box);
+        box.setVisible(false);
+        screen.box.setBounds(-10, -112, 656, 1200);
         frame.add(star);
         star.setBounds(386, 147, 200, 200);
 
         frame.add(player);
-        player.setBounds(256,256,playerSize.width,playerSize.height);
+        player.setBounds(256, 256, playerSize.width, playerSize.height);
 
         frame.setResizable(false);
-        
-        
 
         frame.add(background);
-        background.setBounds(movement.backgroundx,movement.backgroundy,2560,2560);
+        background.setBounds(movement.backgroundx, movement.backgroundy, 2560, 2560);
 
         frame.addKeyListener(new inputs());
         frame.setSize(screenWidth, screenHeight);
         frame.setVisible(true);
-    
-        
-        
 
     }
-    
-
-    
-
-    
-
 
 }

@@ -20,7 +20,7 @@ public class images {
     static ImageIcon bag = new ImageIcon("battle images//bag.png");
     static ImageIcon infoBox = new ImageIcon("battle images//infoBox.png");
     static ImageIcon switchBox = new ImageIcon("battle images//switchBox.png");
-    static ImageIcon switchBox2 = new ImageIcon("battle images//switchBox2.png");    
+    static ImageIcon switchBox2 = new ImageIcon("battle images//switchBox2.png");
     static ImageIcon cursor = new ImageIcon("battle images//cursor.png");
     static ImageIcon green = new ImageIcon("battle images//green.png");
     static ImageIcon yellow = new ImageIcon("battle images//yellow.png");
@@ -46,4 +46,5 @@ public class images {
     static ImageIcon ball3 = new ImageIcon("battle images//ball3.png");
     static ImageIcon status = new ImageIcon();
     static ImageIcon star = new ImageIcon("battle images//star.png");
+    static ImageIcon menu = new ImageIcon("Overworld Images//menu_box.png");
 }
