@@ -1,3 +1,5 @@
+*This project is a complete architectural rewrite of an earlier version built in 2022, which featured SQL database integration and custom sorting algorithms. This iteration focuses on cleaner OOP principles and expanded gameplay mechanics.*
+
 # Mokepon 2 | Java 2D RPG Engine
 
 A tile-based 2D Role-Playing Game built entirely from scratch in core Java. Inspired by classic monster-catching franchises, this project demonstrates custom game engine architecture, object-oriented software design, file-driven asset management, and complex game-state logic without reliance on third-party game frameworks.
